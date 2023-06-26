@@ -1,0 +1,54 @@
+drop sequence recipe_seq;
+create sequence recipe_seq
+	increment by 1
+ 	start with 597
+  	minvalue 1
+  	maxvalue 10000
+  	nocache;
+
+DROP TABLE RECIPE CASCADE CONSTRAINTS;
+
+CREATE TABLE RECIPE (
+	recipe_num number primary key,
+	recipe_name varchar2(300),
+	recipe_category varchar2(50),
+	servings number,
+	cook_image varchar2(128),
+	readcount number
+);
+
+
+drop sequence re_con_seq;
+
+create sequence re_con_seq
+	increment by 1
+  	start with 3451
+  	minvalue 1
+ 	maxvalue 1E28
+ 	nocache;
+ 
+DROP TABLE RECIPE_CONTENT  CASCADE CONSTRAINTS; 
+CREATE TABLE RECIPE_CONTENT (
+	recipe_content_num number primary key,
+	recipe_num number NOT NULL,
+	cook_content varchar2(800),
+	recipe_image varchar2(128)
+);
+
+drop sequence re_food_seq;
+create sequence re_food_seq
+	increment by 1
+  	start with 6397
+  	minvalue 1
+  	maxvalue 1E28
+  	nocache;
+  
+DROP TABLE RECIPE_FOOD  CASCADE CONSTRAINTS; 
+CREATE TABLE RECIPE_FOOD (
+	food_num number primary key,
+	recipe_num number NOT NULL,
+	food_category varchar2(30),
+	food_name varchar2(150),
+	food_amount varchar2(50)
+);
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="recipe.model.RecipeBean">
+  	<insert id="InsertRecipe">
+  		insert into recipe(recipe_num,recipe_name,recipe_category,servings,cook_image)
+  		values(recipe_seq.nextval,#{recipename},#{recipecategory},#{servings},#{cookimage})
+  	</insert>
+  	<select id="GetNum" resultType="int">
+  		select recipe_num from recipe
+  		where recipe_name=#{title}
+  	</select>
+  	<insert id="InsertRecipeContent">
+  		insert into recipe_content
+  		values(re_con_seq.nextval,#{recipenum},#{cookcontent},#{recipeimage})
+  	</insert>
+  	
+  	<insert id="InsertFood">
+  		insert into recipe_food
+  		values(re_food_seq.nextval,#{recipenum},#{foodcategory},#{foodname},#{foodamount})
+  		
+  	</insert>
+  	
+  	<select id="CheckCate" resultType="int">
+  		select count(*) from ingredient
+  		where ing_name = #{ingre}
+  	</select>
+  	<select id="GetCate" resultType="String">
+  		select distinct ing_category from ingredient
+  		where ing_name = #{ingre}
+  	</select>
+  	<select id="GetIngredient" resultType="String">
+  		select ing_name from ingredient
+  	</select>
+  	
+  	
+  </mapper>
